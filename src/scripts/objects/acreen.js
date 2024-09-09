@@ -5,14 +5,30 @@ const screen = {
                                         <img src="${user.avatarUrl}" alt="Foto do perfil do usuário" />
                                         <div class="data">
                                             <h1>${user.name ?? 'Não possui nome cadastrado 😥'}</h1>
-                                            <p>${user.bio ?? 'Não possui bio cadastrado 😥'}</p>
+                                            <p>${user.bio ?? 'Não possui bio cadastrado 😥'}</p><br>
                                             <p>👥 Followers: ${user.followers}</p>
                                             <p>👤 Following: ${user.following}</p>
                                         </div>
                                       </div>`
 
         let repositoriesItens = ''
-        user.repositories.forEach(repo => repositoriesItens += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`)
+        user.repositories.forEach(repo => repositoriesItens += `<li><a href="${repo.html_url}"  target="_blank">${repo.name}
+                                                                        <br>
+                                                                        <div class="lngs">
+                                                                            <p class="info_repo">
+                                                                                🍴${repo.forks}
+                                                                            </p>
+                                                                            <p class="info_repo">
+                                                                                ⭐${repo.stargazers_count}
+                                                                            </p>
+                                                                            <p class="info_repo">
+                                                                                👀${repo.watchers}
+                                                                            </p>
+                                                                            <p class="info_repo">
+                                                                                👨🏽‍💻${repo.language}
+                                                                            </p>
+                                                                        </div>
+                                                                    </a></li>`)
 
         if(user.repositories.length > 0){
             this.userProfile.innerHTML += `<div class="repositories section">
@@ -23,7 +39,7 @@ const screen = {
 
         let eventsList = user.events.filter(event => event.type === "CreateEvent" || event.type === "PushEvent")
 
-        let lastTenEvents = eventsList.splice(0, 10);
+        let lastTenEvents = eventsList.slice(0, 10);
         let displayEvents = '';
 
         lastTenEvents.forEach(event => {
