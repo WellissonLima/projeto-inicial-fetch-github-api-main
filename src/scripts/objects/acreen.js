@@ -60,7 +60,7 @@ const screen = {
         
 
         this.userProfile.innerHTML += `<div class="events">
-                                         <h2>EVENTS</h2>
+                                         <h2>Eventos</h2>
                                          <ul>${displayEvents}</ul>
                                        </div>`
     },
